@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'antd-mobile/dist/antd-mobile.css'; 
 import Routers from './router';
 
 class App extends Component {
