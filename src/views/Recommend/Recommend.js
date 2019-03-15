@@ -1,16 +1,17 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import GetSwiperList from './swiperList'
+import GetDiscList from './discList'
 
 function RecommendPage (props) {
-  const [count, setCount] = useState(0);
   useEffect(() => {
+
   }, []);
   
   return (
     <div>
       {GetSwiperList()}
-      
+      {GetDiscList()}      
     </div>
   );
 }

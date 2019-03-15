@@ -99,6 +99,7 @@ module.exports = function(webpackEnv) {
               },
               stage: 3,
             }),
+            require('postcss-px2rem')({remUnit: 37.5})
           ],
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },
