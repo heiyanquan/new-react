@@ -1,8 +1,9 @@
 import React, { useReducer, useEffect } from 'react';
 import {
   apiPost
-} from '../../common/api'
+} from '../../common/js/api'
 import { Carousel, WingBlank } from 'antd-mobile';
+import './swiper.less'
 
 const initialState = {
   swiperList: []
@@ -26,23 +27,15 @@ function GetSwiperList () {
   }, [])
   return (
     <div>
-      <WingBlank>
-        <Carousel
-          autoplay={false}
-          infinite
-          beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-          afterChange={index => console.log('slide to', index)}
-        >
+      <WingBlank className="swiper-box">
+        <Carousel autoplay infinite>
           {state.swiperList.map(item => (
-            <a
-              key={item.id}
-              href="http://www.alipay.com"
-              style={{ display: 'inline-block', width: '100%' }}
-            >
+            <a key={item.id} href={item.linkUrl}>
               <img
                 src={item.picUrl}
                 alt=""
-                style={{ width: '100%', verticalAlign: 'top' }}
+                style={{ width: '100%' }}
+                onLoad={() => window.dispatchEvent(new Event('resize')) }
               />
             </a>
           ))}

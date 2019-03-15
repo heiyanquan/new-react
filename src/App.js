@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import 'antd-mobile/dist/antd-mobile.css'; 
 import Routers from './router';
 
@@ -10,7 +8,6 @@ class App extends Component {
     
     return (
       <div className="App">
-        <img src={logo} className="App-logo" alt="logo" />
         <Routers />
       </div>
     );
