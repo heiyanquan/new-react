@@ -1,9 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
-import {
-  apiPost
-} from '../../common/js/api'
+import { apiPost } from 'common/js/api'
 import { Carousel, WingBlank } from 'antd-mobile';
-import './swiper.less'
 
 const initialState = {
   swiperList: []
@@ -25,9 +22,13 @@ function GetSwiperList () {
       dispatch({type: 'GET_SWIPER_LIST', data: res})
     })
   }, [])
+  const swiperStyle = {
+    marginLeft: 0,
+    marginRight: 0
+  }
   return (
     <div>
-      <WingBlank className="swiper-box">
+      <WingBlank style={swiperStyle}>
         <Carousel autoplay infinite>
           {state.swiperList.map(item => (
             <a key={item.id} href={item.linkUrl}>
