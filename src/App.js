@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
 import 'antd-mobile/dist/antd-mobile.css'; 
 import Routers from './router';
-import { Tabs, WhiteSpace } from 'antd-mobile';
+import { Tabs } from 'antd-mobile';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       tabs: [
-        { title: 'First Tab', sub: '1' },
-        { title: 'Second Tab', sub: '2' },
-        { title: 'Third Tab', sub: '3' },
+        { title: '推荐', path: '#/' },
+        { title: '歌手', path: '#/singer' },
+        { title: '排行榜', path: '#/rank' },
+        { title: '个人', path: '#/user' }
       ]
     }
   }
 
+  onTabClick (tab, index) {
+    window.location.hash = tab.path
+  }
+
   render() {
-    
     return (
       <div className="App">
-
-        <Routers />
+        <Tabs
+          tabs={this.state.tabs}
+          initalPage={0}
+          tabBarUnderlineStyle={{ border: '1PX solid #ffcd32' }}
+          tabBarBackgroundColor="#222"
+          tabBarActiveTextColor="#ffcd32"
+          tabBarInactiveTextColor="hsla(0,0%,100%,.5)"
+          onTabClick={(tab, index) => this.onTabClick(tab, index)}
+        >
+          <Routers />          
+        </Tabs>
       </div>
     );
   }
