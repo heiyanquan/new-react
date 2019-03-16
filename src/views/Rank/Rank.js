@@ -1,23 +1,33 @@
-import React, { useReducer, useEffect } from 'react';
-import { initialState, reducer, GetLetter} from './letter'
+import React, { useState, useEffect } from 'react';
 import './style.sass'
+import { apiPost } from 'common/js/api'
 
-function GetSingerList () {
-  const [ state, dispatch ] = useReducer(reducer, initialState);
+function GetRankList (props) {
+  const [rankList, setRankList] = useState([])
+
+  const initData = () => {
+    apiPost('music/rankList').then(res => {
+      console.log(res)
+      setRankList(res)
+    })
+  }
+
   useEffect(() => {
-    GetLetter(dispatch)
+    initData()
   }, [])
   return (
     <div>
       <ul>
-        {state.singerList.map(group => (
-          <li key={group.navId} className="list-group">
-            <h2 className="list-group-title">{group.title}</h2>
-            <ul>
-              {group.items.map(item => (
-                <li key={item.id} className="list-group-item">
-                  <img className="avatar" src={item.avatar} alt="" />
-                  <span className="name">{item.name}</span>
+        {rankList.map(item => (
+          <li className="item" key={item.id}>
+            <div className="icon">
+              <img width="100" height="100" src={item.picUrl} alt="" />
+            </div>
+            <ul className="songlist">
+              {item.songList.map((song, index) => (
+                <li className="song" key={index}>
+                  <span>{index + 1}</span>
+                  <span>{song.songname}-{song.singername}</span>
                 </li>
               ))}
             </ul>
@@ -28,4 +38,4 @@ function GetSingerList () {
   );
 }
 
-export default GetSingerList;
+export default GetRankList;

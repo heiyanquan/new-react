@@ -12,12 +12,24 @@ class App extends Component {
         { title: '歌手', path: '#/singer' },
         { title: '排行榜', path: '#/rank' },
         { title: '个人', path: '#/user' }
-      ]
+      ],
+      page: 0
     }
+  }
+
+  componentDidMount () {
+    const hash = window.location.hash
+    const index = this.state.tabs.findIndex(item => item.path === hash)
+    this.setState({
+      page: index
+    });
   }
 
   onTabClick (tab, index) {
     window.location.hash = tab.path
+    this.setState({
+      page: index
+    });
   }
 
   render() {
@@ -25,15 +37,16 @@ class App extends Component {
       <div className="App">
         <Tabs
           tabs={this.state.tabs}
-          initalPage={0}
+          page={this.state.page}
           tabBarUnderlineStyle={{ border: '1PX solid #ffcd32' }}
           tabBarBackgroundColor="#222"
           tabBarActiveTextColor="#ffcd32"
           tabBarInactiveTextColor="hsla(0,0%,100%,.5)"
           onTabClick={(tab, index) => this.onTabClick(tab, index)}
         >
-          <Routers />          
         </Tabs>
+        <Routers />
+
       </div>
     );
   }

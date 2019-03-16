@@ -1,5 +1,16 @@
 import axios from 'axios'
-const API = 'http://www.shenshou.shop:3003/' 
+let API
+switch (process.env.NODE_ENV) {
+  case 'development':
+    // API = 'http://localhost:3003/'
+    API = 'http://www.shenshou.shop:3003/'
+    break;
+  case 'production':
+    API = 'http://www.shenshou.shop:3003/'
+    break;
+  default:
+    API = 'http://www.shenshou.shop:3003/'
+}
 
 export function deleteObjEmpty(search = {}) {
   for (let i in search) {
@@ -33,6 +44,6 @@ function callApi(url, params = {}, method = 'post') {
     }
   })
   .catch(err => {
-    console.log(err.message)
+    console.log(err)
   })
 }
