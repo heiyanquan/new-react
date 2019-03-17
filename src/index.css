@@ -36,6 +36,7 @@ html, body, div, span, applet, object, iframe,
    font-size: 14px;
    font-weight: normal;
    vertical-align: baseline;
+   touch-action: none;
  }
  
  /* HTML5 display-role reset for older browsers */

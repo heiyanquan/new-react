@@ -4,14 +4,18 @@ import 'amfe-flexible'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import createHistory from 'history/createBrowserHistory';
+import { StoreContext, makeStore } from './store';
 import fastclick from 'fastclick'
 fastclick.attach(document.body)
-
+const createHistory = require("history").createBrowserHistory;
+const store = makeStore();
 const history = createHistory();
+
 const render = (Component) => {
   ReactDOM.render(
-    <Component />,
+    <StoreContext.Provider value={store} history={history}>
+      <Component />
+    </StoreContext.Provider>,
     document.getElementById('root')
   );
 };
