@@ -83,6 +83,7 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
   commonJsPath: resolveApp('src/common'),
+  storeJsPath: resolveApp('src/store')
 };
 
 

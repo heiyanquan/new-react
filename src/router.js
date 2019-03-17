@@ -5,6 +5,7 @@ import Recommend from './views/Recommend/Recommend';
 import Singer from './views/Singer/Singer';
 import Rank from './views/Rank/Rank';
 import User from './views/User/User';
+import Detail from './views/Detail/Detail';
 
 const Routes = () => (
 	<HashRouter>
@@ -15,6 +16,8 @@ const Routes = () => (
       <Route path="/singer" component={Singer} />
       <Route path="/rank" component={Rank} />
       <Route path="/user" component={User} />
+      <Route path="/detail" component={Detail} />
+
     </Switch>
 	</HashRouter>
 );
