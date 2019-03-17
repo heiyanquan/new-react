@@ -27,15 +27,13 @@ function GetUserList () {
     <div>
       user page
       <button onClick={addTodo}>addTodo</button>
-      {
-        todos.map((item, index) => (
-          <div key={index} className="flex">
-            <p>{item}</p>
-            <button onClick={() => updateTodo(index)}>update</button>
-            <button onClick={() => deleteTodo(index)}>delete</button>
-          </div>
-        ))
-      }
+      {todos.map((item, index) => (
+        <div key={index} className="flex">
+          <p>{item}</p>
+          <button onClick={() => updateTodo(index)}>update</button>
+          <button onClick={() => deleteTodo(index)}>delete</button>
+        </div>
+      ))}
     </div>
   );
 }
