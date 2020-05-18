@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { StoreContext, makeStore } from './store';
 import fastclick from 'fastclick'
+import 'common/stylus/index.styl'
+
 fastclick.attach(document.body)
 const createHistory = require("history").createBrowserHistory;
 const store = makeStore();
