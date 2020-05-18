@@ -1,17 +1,17 @@
 
-import React, { useEffect } from 'react';
+import React, {} from 'react';
 import GetSwiperList from './swiperList'
 import GetDiscList from './discList'
+import './style.sass'
+import { List } from 'antd-mobile';
 
 function RecommendPage (props) {
-  useEffect(() => {
-
-  }, []);
-  
   return (
-    <div>
-      {GetSwiperList()}
-      {GetDiscList()}      
+    <div className="recommend_wrapper">
+      <List className="recommend_container">
+        <GetSwiperList />
+        <GetDiscList />
+      </List>
     </div>
   );
 }

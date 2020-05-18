@@ -17,7 +17,7 @@ function GetRankList (props) {
   }, [])
   return (
     <div>
-      <ul>
+      <ul className="rank_wrapper">
         {rankList.map(item => (
           <li className="item" key={item.id}>
             <div className="icon">

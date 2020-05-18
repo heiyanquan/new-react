@@ -24,7 +24,7 @@ function GetUserList () {
   useEffect(() => {
   }, [])
   return (
-    <div>
+    <div className="user_wrapper">
       user page
       <button onClick={addTodo}>addTodo</button>
       {todos.map((item, index) => (

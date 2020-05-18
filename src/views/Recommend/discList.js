@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { apiPost } from 'common/js/api'
+import { getDiscList } from 'api/recommend'
 import './style.sass'
 
 function GetDiscList () {
   const [discList, setDiscList] = useState([]);
   useEffect(() => {
-    apiPost('music/getDiscList').then(res => {
-      setDiscList(res)
+    getDiscList().then(res => {
+      if (res.code === 0) {
+        setDiscList(res.data.list)
+      }
     })
   }, [])
   return (

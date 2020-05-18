@@ -46,7 +46,6 @@ class App extends Component {
         >
         </Tabs>
         <Routers />
-
       </div>
     );
   }

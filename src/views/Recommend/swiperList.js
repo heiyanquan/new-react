@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
-import { apiPost } from 'common/js/api'
 import { Carousel, WingBlank } from 'antd-mobile';
+import { getRecommend } from 'api/recommend'
 
 const initialState = {
   swiperList: []
@@ -18,8 +18,10 @@ function reducer(state, action) {
 function GetSwiperList () {
   const [ state, dispatch ] = useReducer(reducer, initialState);
   useEffect(() => {
-    apiPost('music/swiperList').then(res => {
-      dispatch({type: 'GET_SWIPER_LIST', data: res})
+    getRecommend().then(res => {
+      if (res.code === 0) {
+        dispatch({type: 'GET_SWIPER_LIST', data: res.data.slider})
+      }
     })
   }, [])
   const swiperStyle = {

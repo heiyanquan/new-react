@@ -66,7 +66,8 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrlOrPath,
   commonJsPath: resolveApp('src/common'),
-  storeJsPath: resolveApp('src/store')
+  storeJsPath: resolveApp('src/store'),
+  apiJsPath: resolveApp('src/api')
 };
 
 

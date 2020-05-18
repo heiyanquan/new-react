@@ -296,6 +296,7 @@ module.exports = function(webpackEnv) {
         'react-native': 'react-native-web',
         'common': paths.commonJsPath,
         'store': paths.storeJsPath,
+        'api': paths.apiJsPath,
         // Allows for better profiling with ReactDevTools
         ...(isEnvProductionProfile && {
           'react-dom$': 'react-dom/profiling',
