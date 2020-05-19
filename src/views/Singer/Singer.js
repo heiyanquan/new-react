@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { initialState, reducer, GetLetter} from './letter'
-import './style.sass'
+import './style.styl'
 import {  } from 'antd-mobile';
 
 function GetSingerList () {
@@ -10,7 +10,7 @@ function GetSingerList () {
   }, [])
   return (
     <div className="singer_wrapper">
-      <ul>
+      <ul className="singer_container">
         {state.singerList.map(group => (
           <li key={group.title} className="list-group">
             <h2 className="list-group-title">{group.title}</h2>

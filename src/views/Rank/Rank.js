@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './style.sass'
-import { apiPost } from 'common/js/api'
+import './style.styl'
+import { getTopList } from 'api/rank'
+import { ERR_OK } from 'api/config'
 
 function GetRankList (props) {
   const [rankList, setRankList] = useState([])
 
   const initData = () => {
-    apiPost('music/rankList').then(res => {
+    getTopList().then((res) => {
       console.log(res)
-      setRankList(res)
+      if (res.code === ERR_OK) {
+        setRankList(res.data.topList)
+      }
     })
   }
 

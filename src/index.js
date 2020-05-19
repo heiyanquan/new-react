@@ -1,21 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { StoreContext, makeStore } from './store';
 import fastclick from 'fastclick'
 import 'common/stylus/index.styl'
+import {
+  HashRouter
+} from "react-router-dom";
 
 fastclick.attach(document.body)
-const createHistory = require("history").createBrowserHistory;
 const store = makeStore();
-const history = createHistory();
 
 const render = (Component) => {
   ReactDOM.render(
-    <StoreContext.Provider value={store} history={history}>
-      <Component />
+    <StoreContext.Provider value={store}>
+      <HashRouter>
+        <Component />
+      </HashRouter>
     </StoreContext.Provider>,
     document.getElementById('root')
   );

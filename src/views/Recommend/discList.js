@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getDiscList } from 'api/recommend'
-import './style.sass'
+import './style.styl'
 
-function GetDiscList () {
+function GetDiscList (props) {
+  const { history } = props;
   const [discList, setDiscList] = useState([]);
+
   useEffect(() => {
     getDiscList().then(res => {
       if (res.code === 0) {
@@ -11,12 +13,16 @@ function GetDiscList () {
       }
     })
   }, [])
+  const selectItem = item => {
+    history.push(`/recommend/${item.dissid}`)
+  }
+
   return (
     <div className="recommend-list">
       <h1 className="list-title">热门歌单推荐</h1>
       <ul>
         {discList.map(item => (
-          <li key={item.dissid} className="item">
+          <li key={item.dissid} className="item" onClick={() => selectItem(item)}>
             <div className="icon">
               <img src={item.imgurl} alt="" />
             </div>
