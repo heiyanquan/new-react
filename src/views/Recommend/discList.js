@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getDiscList } from 'api/recommend'
 import './style.styl'
+import { useHistory } from "react-router-dom";
 
 function GetDiscList (props) {
-  const { history } = props;
+  let history = useHistory();
   const [discList, setDiscList] = useState([]);
 
   useEffect(() => {
@@ -14,6 +15,7 @@ function GetDiscList (props) {
     })
   }, [])
   const selectItem = item => {
+    props.callsetDisc(item)
     history.push(`/recommend/${item.dissid}`)
   }
 

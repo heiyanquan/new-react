@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { StoreContext, makeStore } from './store';
+import createStore from './store';
+import { Provider } from 'react-redux';
 import fastclick from 'fastclick'
 import 'common/stylus/index.styl'
 import {
@@ -10,15 +11,15 @@ import {
 } from "react-router-dom";
 
 fastclick.attach(document.body)
-const store = makeStore();
+const store = createStore();
 
 const render = (Component) => {
   ReactDOM.render(
-    <StoreContext.Provider value={store}>
+    <Provider store={store}>
       <HashRouter>
         <Component />
       </HashRouter>
-    </StoreContext.Provider>,
+    </Provider>,
     document.getElementById('root')
   );
 };

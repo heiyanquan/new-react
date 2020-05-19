@@ -6,8 +6,11 @@ import {
 import { getSongList } from 'api/recommend'
 import { ERR_OK } from 'api/config'
 import { createSong, isValidMusic, processSongsUrl } from 'common/js/song'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
-function GetSingerDetail () {
+function GetSingerDetail (props) {
   const [songs, setSongs] = useState([])
   const [title, setTitle] = useState('')
   const [bgImage, setBgImage] = useState('')
@@ -15,7 +18,8 @@ function GetSingerDetail () {
   const playBtnRef = useRef()
   const filterRef = useRef()
   const layerRef = useRef()
-
+  const {disc} = props
+  let history = useHistory();
   let {id} = useParams();
 
   const _normalizeSongs = (list) => {
@@ -40,6 +44,15 @@ function GetSingerDetail () {
     //   list: this.songs
     // })
   }
+
+  useEffect(() => {
+    if (!disc.dissid) {
+      history.push('/recommend')
+      return
+    }
+    setTitle(disc.dissname)
+    setBgImage(disc.imgurl)
+  }, [disc])
 
   useEffect(() => {
     getSongList(id).then((res) => {
@@ -73,4 +86,15 @@ function GetSingerDetail () {
   );
 }
 
-export default GetSingerDetail;
+function mapStateToProps(state) {
+  return {
+    disc: state.recommend.disc,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GetSingerDetail);

@@ -1,9 +1,11 @@
-import { createStore } from 'redux';
-import {create} from 'redux-react-hook';
-import reducerData from './reducer'
+import { createStore as _createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import reducer from './reducer';
 
-export function makeStore() {
-  return createStore(reducerData);
+export default function createStore() {
+    const middleware = [thunk];
+    const finalCreateStore = applyMiddleware(...middleware)(_createStore);
+    const store = finalCreateStore(reducer);
+
+    return store;
 }
-
-export const {StoreContext, useDispatch, useMappedState} = create();
